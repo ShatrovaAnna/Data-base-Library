@@ -1,0 +1,195 @@
+INSERT INTO "Library" VALUES (1, 'Красный проспект, 25', 'Библиотека им. Н.В.Гоголя');
+INSERT INTO "Library" VALUES (2, 'Ватунина, 3', 'Молодежная научная библиотека');
+INSERT INTO "Library" VALUES (3, 'Пирогова, 1', 'Научная библиотека НГУ');
+INSERT INTO "Library" VALUES (4, 'Морской проспект, 39', 'Библиотека им. А.С.Пушкина');
+
+INSERT INTO "Room" VALUES (1, 1);
+INSERT INTO "Room" VALUES (2, 1);
+INSERT INTO "Room" VALUES (3, 1);
+INSERT INTO "Room" VALUES (5, 2);
+INSERT INTO "Room" VALUES (6, 2);
+INSERT INTO "Room" VALUES (7, 3);
+INSERT INTO "Room" VALUES (8, 3);
+INSERT INTO "Room" VALUES (9, 4);
+
+INSERT INTO "Stand" VALUES (1, 1);
+INSERT INTO "Stand" VALUES (2, 2);
+INSERT INTO "Stand" VALUES (3, 3);
+INSERT INTO "Stand" VALUES (5, 5);
+INSERT INTO "Stand" VALUES (6, 6);
+INSERT INTO "Stand" VALUES (7, 7);
+INSERT INTO "Stand" VALUES (8, 8);
+INSERT INTO "Stand" VALUES (9, 9);
+
+INSERT INTO "Bookshelf" VALUES (1, 1);
+INSERT INTO "Bookshelf" VALUES (2, 2);
+INSERT INTO "Bookshelf" VALUES (3, 3);
+INSERT INTO "Bookshelf" VALUES (5, 5);
+INSERT INTO "Bookshelf" VALUES (6, 6);
+INSERT INTO "Bookshelf" VALUES (7, 7);
+INSERT INTO "Bookshelf" VALUES (8, 8);
+INSERT INTO "Bookshelf" VALUES (9, 9);
+
+INSERT INTO "Reader_category" VALUES (1, 'студент');
+INSERT INTO "Reader_category" VALUES (2, 'научный работник');
+INSERT INTO "Reader_category" VALUES (3, 'преподаватель');
+INSERT INTO "Reader_category" VALUES (4, 'школьник');
+INSERT INTO "Reader_category" VALUES (5, 'рабочий');
+INSERT INTO "Reader_category" VALUES (6, 'пенсионер');
+
+INSERT INTO "Reader" VALUES (1, 1, 1, 'Иванов Александр Сергеевич');
+INSERT INTO "Reader" VALUES (2, 1, 1, 'Суворов Илья Алексеевич');
+INSERT INTO "Reader" VALUES (3, 2, 2, 'Уварова Наталья Васильевна');
+INSERT INTO "Reader" VALUES (4, 2, 3, 'Соловьева Анна Николаевна');
+INSERT INTO "Reader" VALUES (5, 3, 3, 'Ильин Максим Павлович');
+INSERT INTO "Reader" VALUES (6, 3, 4, 'Петров Иван Васильевич');
+INSERT INTO "Reader" VALUES (7, 3, 5, 'Аксенов Валерий Константинович');
+INSERT INTO "Reader" VALUES (8, 4, 5, 'Терпухов Иван Савельевич');
+INSERT INTO "Reader" VALUES (9, 4, 6, 'Коваленко Наталья Юрьевна');
+INSERT INTO "Reader" VALUES (10, 4, 1, 'Перова Инна Евгеньевна');
+INSERT INTO "Reader" VALUES (11, 1, 6, 'Минин Евгений Петрович');
+
+INSERT INTO "Category_attribute_reader" VALUES (1, 1, 'учебное заведение', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (2, 1, 'факультет', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (3, 1, 'курс', 'int');
+INSERT INTO "Category_attribute_reader" VALUES (4, 1, 'номер группы', 'int');
+INSERT INTO "Category_attribute_reader" VALUES (5, 2, 'название организации', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (6, 2, 'научная тема', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (7, 3, 'учебное заведение', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (8, 4, 'учебное заведение', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (9, 4, 'класс', 'int');
+INSERT INTO "Category_attribute_reader" VALUES (10, 5, 'название организации', 'text');
+INSERT INTO "Category_attribute_reader" VALUES (11, 6, 'возраст', 'int');
+
+INSERT INTO "Attribute_value_reader" VALUES (1, 1, 'НГУ');
+INSERT INTO "Attribute_value_reader" VALUES (2, 1, 'ФИТ');
+INSERT INTO "Attribute_value_reader" VALUES (3, 1, '3');
+INSERT INTO "Attribute_value_reader" VALUES (4, 1, '20203');
+INSERT INTO "Attribute_value_reader" VALUES (1, 2, 'НГУ');
+INSERT INTO "Attribute_value_reader" VALUES (2, 2, 'ФИТ');
+INSERT INTO "Attribute_value_reader" VALUES (3, 2, '1');
+INSERT INTO "Attribute_value_reader" VALUES (4, 2, '22211');
+INSERT INTO "Attribute_value_reader" VALUES (1, 10, 'НГТУ');
+INSERT INTO "Attribute_value_reader" VALUES (2, 10, 'ММФиМ');
+INSERT INTO "Attribute_value_reader" VALUES (3, 10, '5');
+INSERT INTO "Attribute_value_reader" VALUES (4, 10, '19234');
+INSERT INTO "Attribute_value_reader" VALUES (5, 3, 'Институт математики им. Соболева');
+INSERT INTO "Attribute_value_reader" VALUES (6, 3, 'Математика');
+INSERT INTO "Attribute_value_reader" VALUES (7, 5, 'НГТУ');
+INSERT INTO "Attribute_value_reader" VALUES (7, 4, 'НГУ');
+INSERT INTO "Attribute_value_reader" VALUES (8, 6, 'Лицей № 130');
+INSERT INTO "Attribute_value_reader" VALUES (9, 6, '6');
+INSERT INTO "Attribute_value_reader" VALUES (10, 8, 'ВТБ');
+INSERT INTO "Attribute_value_reader" VALUES (10, 7, 'ЦФТ');
+INSERT INTO "Attribute_value_reader" VALUES (11, 9, '70');
+INSERT INTO "Attribute_value_reader" VALUES (11, 11, '79');
+
+INSERT INTO "Literature_categoty" VALUES (1, 'учебник');
+INSERT INTO "Literature_categoty" VALUES (2, 'повесть');
+INSERT INTO "Literature_categoty" VALUES (3, 'роман');
+INSERT INTO "Literature_categoty" VALUES (4, 'статья');
+INSERT INTO "Literature_categoty" VALUES (5, 'стихотворения');
+INSERT INTO "Literature_categoty" VALUES (6, 'диссертация');
+INSERT INTO "Literature_categoty" VALUES (7, 'реферат');
+INSERT INTO "Literature_categoty" VALUES (8, 'тезисы доклада');
+
+INSERT INTO "Literature" VALUES (1, 1, 'Математика 7 класс', 'Н.В.Никольский', 2010);
+INSERT INTO "Literature" VALUES (2, 1, 'Программирование на C++', 'А.Ричи', 1999);
+INSERT INTO "Literature" VALUES (3, 2, 'Собачье сердце', 'М.А.Булгаков', 2005);
+INSERT INTO "Literature" VALUES (4, 2, 'Гранатовый браслет', 'А.И.Куприн', 1991);
+INSERT INTO "Literature" VALUES (5, 3, 'Обломов', 'И.А.Гончаров', 1969);
+INSERT INTO "Literature" VALUES (6, 3, 'Анна Каренина', 'Л.Н.Толстой', 1979);
+INSERT INTO "Literature" VALUES (7, 4, 'Влияние температуры воды на размер креветок', 'А.А.Гришкин', 2014);
+INSERT INTO "Literature" VALUES (8, 4, 'Использование рекомендательных систем при подборе ВУЗа', 'А.А.Зыкова', 2021);
+INSERT INTO "Literature" VALUES (9, 4, 'Миграция дельфинов в Средиземном море', 'А.Н.Савостьянов', 2008);
+INSERT INTO "Literature" VALUES (10, 5, 'Парус', 'М.Ю.Лермонтов', 1841);
+INSERT INTO "Literature" VALUES (11, 5, 'Родина', 'М.Ю.Лермонтов', 1849);
+INSERT INTO "Literature" VALUES (12, 5, 'Пророк', 'А.С.Пушкин', 1846);
+INSERT INTO "Literature" VALUES (13, 6, 'Судебная нуллификация нормативно-правового акта', 'Н.П.Шмелёв', 2018);
+INSERT INTO "Literature" VALUES (14, 6, 'Обвинительное заключение в советском уголовном процессе', 'В.П.Постовой', 1964);
+INSERT INTO "Literature" VALUES (15, 7, 'Репродуктивное и терапевтическое клонирование человека', 'К.В.Карпова', 2002);
+INSERT INTO "Literature" VALUES (16, 7, 'Апоптоз у человека', 'Р.А.Ахматов', 2022);
+INSERT INTO "Literature" VALUES (17, 8, 'О МЕХАНИЗМАХ СТИМУЛИРОВАНИЯ РАЗВИТИЯ
+РАСПРЕДЕЛЕННОЙ ГЕНЕРАЦИИ', 'Л.Д.Хабачев', 2015);
+INSERT INTO "Literature" VALUES (18, 8, 'ВНЕДРЕНИЕ СИСТЕМЫ ЭНЕРГОМЕНЕДЖМЕНТА:
+ПОДГОТОВИТЕЛЬНЫЙ ЭТАП', 'В.Н.Старков', 2011);
+
+INSERT INTO "Edition_category" VALUES (1, 'книга');
+INSERT INTO "Edition_category" VALUES (2, 'журнал');
+INSERT INTO "Edition_category" VALUES (3, 'газета');
+INSERT INTO "Edition_category" VALUES (4, 'сборник статей');
+INSERT INTO "Edition_category" VALUES (5, 'сборник стихов');
+INSERT INTO "Edition_category" VALUES (6, 'сборник докладов');
+INSERT INTO "Edition_category" VALUES (7, 'сборник тезисов докладов');
+INSERT INTO "Edition_category" VALUES (8, 'сборник рефератов');
+INSERT INTO "Edition_category" VALUES (9, 'диссертация');
+
+INSERT INTO "Rule" VALUES (1, 'только для читального зала');
+INSERT INTO "Rule" VALUES (2, 'Срок пользования 14 дней');
+INSERT INTO "Rule" VALUES (3, 'Срок пользования 9 месяцев');
+INSERT INTO "Rule" VALUES (4, 'Срок пользования 7 дней');
+
+INSERT INTO "Edition" VALUES (1, 1, 1, 'Математика 7 класс', '25.07.2012', '', 3);
+INSERT INTO "Edition" VALUES (2, 1, 1, 'Программирование на C++', '09.07.2013', '', 3);
+INSERT INTO "Edition" VALUES (3, 1, 2, 'Повести', '09.07.2003', '', 2);
+INSERT INTO "Edition" VALUES (4, 1, 3, 'Романы', '09.02.2002', '', 2);
+INSERT INTO "Edition" VALUES (5, 1, 3, 'Обломов', '09.02.2002', '', 2);
+INSERT INTO "Edition" VALUES (7, 2, 5, 'Окружающий мир', '09.02.2019', '', 1);
+INSERT INTO "Edition" VALUES (8, 2, 5, 'В мире животных', '16.09.2020', '', 1);
+INSERT INTO "Edition" VALUES (9, 3, 6, 'Правда', '16.09.2020', '', 1);
+INSERT INTO "Edition" VALUES (10, 3, 6, 'Рабочий', '16.09.2021', '', 1);
+INSERT INTO "Edition" VALUES (11, 4, 7, 'Сборник статей', '16.09.2022', '', 1);
+INSERT INTO "Edition" VALUES (12, 5, 8, 'Сборник стихов', '16.09.2023', '', 2);
+INSERT INTO "Edition" VALUES (13, 6, 7, 'Сборник докладов', '03.11.2022', '', 4);
+INSERT INTO "Edition" VALUES (14, 7, 7, 'Сборник тезисов докладов', '03.11.2022', '', 4);
+INSERT INTO "Edition" VALUES (15, 8, 8, 'Сборник рефератов', '03.11.2022', '', 4);
+INSERT INTO "Edition" VALUES (16, 9, 9, 'Диссертация по уголовному процессу СССР', '03.12.2002', '', 4);
+INSERT INTO "Edition" VALUES (17, 9, 9, 'Диссертация по судебной нуллификация', '03.12.2022', '', 4);
+
+INSERT INTO "Edition_literature" VALUES (1, 1);
+INSERT INTO "Edition_literature" VALUES (2, 3);
+INSERT INTO "Edition_literature" VALUES (3, 4);
+INSERT INTO "Edition_literature" VALUES (3, 5);
+INSERT INTO "Edition_literature" VALUES (4, 6);
+INSERT INTO "Edition_literature" VALUES (4, 7);
+INSERT INTO "Edition_literature" VALUES (5, 6);
+INSERT INTO "Edition_literature" VALUES (7, 8);
+INSERT INTO "Edition_literature" VALUES (7, 10);
+INSERT INTO "Edition_literature" VALUES (8, 8);
+INSERT INTO "Edition_literature" VALUES (9, 9);
+INSERT INTO "Edition_literature" VALUES (10, 8);
+INSERT INTO "Edition_literature" VALUES (11, 8);
+INSERT INTO "Edition_literature" VALUES (11, 9);
+INSERT INTO "Edition_literature" VALUES (11, 10);
+INSERT INTO "Edition_literature" VALUES (12, 11);
+INSERT INTO "Edition_literature" VALUES (12, 12);
+INSERT INTO "Edition_literature" VALUES (12, 13);
+INSERT INTO "Edition_literature" VALUES (13, 18);
+INSERT INTO "Edition_literature" VALUES (14, 18);
+INSERT INTO "Edition_literature" VALUES (14, 19);
+INSERT INTO "Edition_literature" VALUES (15, 16);
+INSERT INTO "Edition_literature" VALUES (15, 17);
+INSERT INTO "Edition_literature" VALUES (16, 15);
+INSERT INTO "Edition_literature" VALUES (17, 14);
+
+
+INSERT INTO "Worker" VALUES (1, 'Афанасьева Анфиса Павловна');
+INSERT INTO "Worker" VALUES (2, 'Болгар Нина Николаевна');
+INSERT INTO "Worker" VALUES (3, 'Казакова Елизавета Алексеевна');
+INSERT INTO "Worker" VALUES (4, 'Марьина Людмила Петровна');
+INSERT INTO "Worker" VALUES (5, 'Киселёв Кирилл Сергеевич');
+
+INSERT INTO "Worker_room" VALUES (1, 1);
+INSERT INTO "Worker_room" VALUES (2, 1);
+INSERT INTO "Worker_room" VALUES (3, 2);
+INSERT INTO "Worker_room" VALUES (5, 3);
+INSERT INTO "Worker_room" VALUES (6, 3);
+INSERT INTO "Worker_room" VALUES (7, 4);
+INSERT INTO "Worker_room" VALUES (8, 4);
+INSERT INTO "Worker_room" VALUES (9, 5);
+
+INSERT INTO "Borrowing" VALUES (1, 1, 1, 1, '', 1, '23.02.23', '', '25.03.23');
+INSERT INTO "Borrowing" VALUES (1, 2, 2, 2, 2, 1, '23.01.23', '02.02.23', '09.02.23');
+INSERT INTO "Borrowing" VALUES (3, 2, 7, 3, '', 2, '11.01.23', '', '18.01.23');
+INSERT INTO "Borrowing" VALUES (4, 1, 7, 3, 3, 2, '11.12.22', '14.12.22', '17.12.22');
+INSERT INTO "Borrowing" VALUES (6, 1, 8, 3, 3, 2, '10.12.22', '10.12.22', '17.12.22');

@@ -1,0 +1,106 @@
+1.	Получить список читателей с заданными характеристиками: студентов указанного учебного заведения, факультета, научных работников по определенной тематике и т.д.
+
+SELECT "Reader"."name" FROM (("Reader" INNER JOIN "Reader_category" ON "Reader"."category" = "Reader_category"."id_category") INNER JOIN "Category_attribute_reader" ON "Reader_category"."id_category"="Category_attribute_reader"."categoty_id") INNER JOIN "Attribute_value_reader" ON "Reader"."id_reader"="Attribute_value_reader"."reader_id" AND "Category_attribute_reader"."id_attribute_read"="Attribute_value_reader"."attribute_read_id" WHERE "Reader_category"."category"='студент' AND "Attribute_value_reader"."value" LIKE %%;
+
+SELECT "Reader"."name", "Attribute_value_reader"."value", "Library"."name" FROM ((("Reader" INNER JOIN "Reader_category" ON "Reader"."category" = "Reader_category"."id_category") INNER JOIN "Category_attribute_reader" ON "Reader_category"."id_category"="Category_attribute_reader"."categoty_id") INNER JOIN "Attribute_value_reader" ON "Reader"."id_reader"="Attribute_value_reader"."reader_id" AND "Category_attribute_reader"."id_attribute_read"="Attribute_value_reader"."attribute_read_id") INNER JOIN "Library" ON "Reader"."library_id"="Library"."id_library"  WHERE "Reader_category"."category"='студент' AND "Category_attribute_reader"."attribute_name"='факультет' AND "Attribute_value_reader"."value"='ФИТ' AND "DISABLED" IS NULL;
+
+SELECT "Reader"."name", "Attribute_value_reader"."value", "Library"."name" FROM ((("Reader" INNER JOIN "Reader_category" ON "Reader"."category" = "Reader_category"."id_category") INNER JOIN "Category_attribute_reader" ON "Reader_category"."id_category"="Category_attribute_reader"."categoty_id") INNER JOIN "Attribute_value_reader" ON "Reader"."id_reader"="Attribute_value_reader"."reader_id" AND "Category_attribute_reader"."id_attribute_read"="Attribute_value_reader"."attribute_read_id") INNER JOIN "Library" ON "Reader"."library_id"="Library"."id_library"  WHERE "Reader_category"."category"='студент' AND "Category_attribute_reader"."attribute_name"='факультет' AND "Attribute_value_reader"."value"='ФИТ' AND "Reader"."library_id" = ? AND "DISABLED" IS NULL;
+
+
+2.	Выдать перечень читателей, на руках у которых находится указанное произведение.
+
+SELECT "Reader"."name", "Literature"."title"
+FROM ((("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_literature" ON "Edition_literature"."edition_id"="Edition"."id_edition")  INNER JOIN "Literature" ON "Edition_literature"."literature_id"="Literature"."id_literature"
+WHERE "Literature"."title" LIKE '%%' AND "Borrowing"."return_real_data" IS NULL;
+
+3.	Получить список читателей, на руках у которых находится указанное издание (книга, журнал и т.д).
+
+SELECT "Reader"."name", "Edition_category"."name", "Edition"."name" FROM (("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_category" ON "Edition_category"."id_ed_category"="Edition"."category_ed_id" WHERE "Edition_category"."name" = 'книга'  AND "Edition"."name" LIKE '%Матем%' AND "Borrowing"."return_real_data" IS NULL;
+
+4.	Получить перечень читателей, которые в течение указанного промежутка времени получали издание с некоторым произведением, и название этого издания.
+
+SELECT "Reader"."name", "Edition_category"."name", "Edition"."name", "Literature"."title", "Borrowing"."take_data" FROM (((("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_literature" ON "Edition_literature"."edition_id"="Edition"."id_edition")  INNER JOIN "Literature" ON "Edition_literature"."literature_id"="Literature"."id_literature") INNER JOIN "Edition_category" ON "Edition_category"."id_ed_category"="Edition"."category_ed_id" WHERE ("Borrowing"."take_data" BETWEEN '21.02.23' AND '27.02.23') AND ("Literature"."title" LIKE '%а%');
+
+5.	Выдать список изданий, которые в течение некоторого времени получал указанный читатель из фонда библиотеки, где он зарегистрирован.
+
+SELECT "Edition"."name", "Edition_category"."name", "Library"."name" FROM ((("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_category" ON "Edition_category"."id_ed_category"="Edition"."category_ed_id") INNER JOIN "Library" ON "Library"."id_library"="Borrowing"."library_id" WHERE ("Reader"."name"='Суворов Илья Алексеевич') AND ("Borrowing"."library_id"="Reader"."library_id") AND ("Borrowing"."take_data" BETWEEN '01.01.23' AND '27.02.23');
+
+6.	Получить перечень изданий, которыми в течение некоторого времени пользовался указанный читатель из фонда библиотеки, где он не зарегистрирован.
+
+SELECT "Edition_category"."name", "Edition"."name", "Library"."name"
+FROM ((("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_category" ON "Edition_category"."id_ed_category"="Edition"."category_ed_id") INNER JOIN "Library" ON "Library"."id_library"="Borrowing"."library_id" WHERE ("Reader"."name"='Суворов Илья Алексеевич') AND ("Borrowing"."library_id"<>"Reader"."library_id") AND ("Borrowing"."take_data" BETWEEN '01.01.23' AND '27.02.23');
+
+7.	Получить список литературы, которая в настоящий момент выдана с определенной полки некоторой библиотеки.
+
+SELECT "Edition"."name", "Edition_category"."name", "Library"."name" FROM (("Borrowing" INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_category" ON "Edition_category"."id_ed_category"="Edition"."category_ed_id") INNER JOIN "Library" ON "Library"."id_library"="Borrowing"."library_id" WHERE "Edition"."bookshelf_id"=1 AND "Borrowing"."return_real_data" IS NULL;
+
+8.	Выдать список читателей, которые в течение обозначенного периода были обслужены указанным библиотекарем.
+
+SELECT "Reader"."name" FROM ("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Worker" ON "Worker"."id_worker"= "Borrowing"."worker_taken_id" OR "Worker"."id_worker"= "Borrowing"."worker_return_id" WHERE "Worker"."name" = 'Болгар Нина Николаевна' AND (("Borrowing"."take_data" BETWEEN '10.01.22' AND '12.03.23') OR ("Borrowing"."return_real_data" BETWEEN '10.01.22' AND '12.03.23')) GROUP BY "Reader"."name";
+
+9.	Получить данные о выработке библиотекарей (число обслуженных читателей в указанный период времени).
+
+SELECT "Worker"."name", COUNT("Reader"."id_reader")
+FROM ("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Worker" ON "Worker"."id_worker"= "Borrowing"."worker_taken_id" OR "Worker"."id_worker"= "Borrowing"."worker_return_id" WHERE (("Borrowing"."take_data" BETWEEN '10.01.22' AND '12.03.23') OR ("Borrowing"."return_real_data" BETWEEN '10.01.22' AND '12.03.23')) GROUP BY "Worker"."name";
+
+
+10.	Получить список читателей с просроченным сроком литературы.
+
+SELECT "Reader"."name", "Edition"."name" FROM ("Reader" INNER JOIN "Borrowing" ON "Reader"."id_reader" = "Borrowing"."reader_id") INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition" WHERE  "Borrowing"."return_real_data" IS NULL AND "Borrowing"."return_term"<'24.03.23';
+
+
+11.	Получить перечень указанной литературы, которая поступила (была списана) в течение некоторого периода.
+
+SELECT "Edition"."name", "Edition"."in_data" FROM "Edition" WHERE "Edition"."in_data" BETWEEN '10.01.17' AND '12.01.23';
+
+SELECT "Edition"."name", "Edition"."out_data" FROM "Edition" WHERE "Edition"."out_data" BETWEEN ? AND ?;
+
+
+12.	Выдать список библиотекарей, работающих в указанном читальном зале некоторой библиотеки.
+
+SELECT "Worker"."name", "Library"."name" FROM (("Worker" INNER JOIN "Worker_room" ON "Worker"."id_worker"= "Worker_room"."worker_id") INNER JOIN "Room" ON "Room"."id_room"= "Worker_room"."room_id") INNER JOIN "Library" ON "Room"."library_id"= "Library"."id_library" WHERE "Room"."id_room"=1;
+
+
+13.	Получить список читателей, не посещавших библиотеку в течение указанного времени.
+
+SELECT "Reader"."name" FROM "Reader" WHERE NOT EXISTS (SELECT *
+FROM "Borrowing" WHERE "Reader"."id_reader" = "Borrowing"."reader_id" AND (("Borrowing"."take_data" BETWEEN '10.01.23' AND '12.01.23') OR ("Borrowing"."return_real_data" BETWEEN '10.01.23' AND '12.01.23')) AND "Borrowing"."library_id" = ?) ORDER BY "Reader"."name";
+
+14.	Получить список инвентарных номеров и названий из библиотечного фонда, в которых содержится указанное произведение.
+
+SELECT "Edition"."id_edition", "Edition"."name"
+
+FROM ("Edition" INNER JOIN "Edition_literature" ON "Edition_literature"."edition_id"="Edition"."id_edition")  INNER JOIN "Literature" ON "Edition_literature"."literature_id"="Literature"."id_literature"
+
+WHERE "Literature"."title" LIKE '%Влияние температуры воды на размер креветок%';
+
+
+15.	Выдать список инвентарных номеров и названий из библиотечного фонда, в которых содержатся произведения указанного автора.
+
+SELECT DISTINCT "Edition"."id_edition", "Edition"."name"
+
+FROM ("Edition" INNER JOIN "Edition_literature" ON "Edition_literature"."edition_id"="Edition"."id_edition")  INNER JOIN "Literature" ON "Edition_literature"."literature_id"="Literature"."id_literature"
+
+WHERE "Literature"."author" LIKE '%Лермонтов%';
+
+
+16.	Получить список самых популярных произведений.
+
+SELECT * FROM (SELECT  "Literature"."title", COUNT(*) FROM (("Borrowing" INNER JOIN "Edition" ON "Borrowing"."edition_id"="Edition"."id_edition") INNER JOIN "Edition_literature" ON "Edition_literature"."edition_id"="Edition"."id_edition")  INNER JOIN "Literature" ON "Edition_literature"."literature_id"="Literature"."id_literature" GROUP BY "Literature"."title" ORDER BY COUNT(*) DESC) WHERE ROWNUM <= ?;
+
+
+SELECT "Worker"."name" FROM "Worker" INNER JOIN "Worker_room" ON "Worker"."id_worker"="Worker_room"."worker_id"
+WHERE "Worker_room"."room_id" = (SELECT "Worker_room"."room_id" FROM ("Worker_room" INNER JOIN "Room" ON "Worker_room"."room_id" = "Room"."id_room") INNER JOIN "Library" ON "Room"."library_id"="Library"."id_library" WHERE "Library"."id_library"=1);
+
+
+
+
+
+
+
+
+
+
+
+
+
